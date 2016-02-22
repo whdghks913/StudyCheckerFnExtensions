@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">스터디체커 확장기능</string>
+
+    <string name="into_title">스터디체커 확장 기능</string>
+    <string name="into_msg">스터디체커 FN 확장 기능</string>
+    <string name="notification_msg">스터디체커를 실행하려면 글자를 터치하세요</string>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tistory.itmir.studycheckerfnextensions">
+
+    <!-- https://code.google.com/p/fn-extensions-library/wiki/CreatinganExtension -->
+    <uses-permission android:name="robj.floating.notifications.EXTENSION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/studychecker_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="robj.floating.notifications.isExtension" />
+            </intent-filter>
+
+            <meta-data
+                android:name="label"
+                android:value="@string/into_title" />
+            <meta-data
+                android:name="desc"
+                android:value="@string/into_msg" />
+            <meta-data
+                android:name="settingsActivity"
+                android:value=".MainActivity" />
+        </service>
+
+        <receiver android:name="robj.floating.notifications.EnabledReceiver">
+            <intent-filter>
+                <action android:name="robj.floating.notifications.extension.ENABLED" />
+                <action android:name="robj.floating.notifications.extension.DISABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".ActionReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="robj.floating.notifications.extension" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".HeadsetBroadcast"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="999999">
+                <action android:name="android.intent.action.HEADSET_PLUG" />
+                <action android:name="itmir.study.checker.show" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".StudyCheckerNotificationListenerService"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
